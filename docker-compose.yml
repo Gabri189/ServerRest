@@ -1,0 +1,15 @@
+services:
+  zapache:
+    build: .
+    ports:
+      - '8000:80'
+    volumes:
+      - ".:/var/www/html"
+    links:
+      - zmysql
+  zmysql:
+    image: "mysql:5.7"
+    volumes: 
+      - /tmp/zmysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
